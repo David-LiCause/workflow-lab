@@ -10,6 +10,7 @@ resolution-markers = [
 members = [
     "health-ai-research-digest",
     "healthtech-market-landscape-boston",
+    "healthtech-news-events",
     "workflow-lab",
 ]
 
@@ -1262,6 +1263,25 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.14.4" },
     { name = "python-dotenv", specifier = ">=1.2.4" },
     { name = "workflow-lab", extras = ["db", "llm", "storage"], editable = "packages/workflow-lab" },
+]
+
+[[package]]
+name = "healthtech-news-events"
+version = "0.1.0"
+source = { editable = "workflows/healthtech-news-events" }
+dependencies = [
+    { name = "langgraph" },
+    { name = "pydantic" },
+    { name = "python-dotenv" },
+    { name = "workflow-lab", extra = ["db", "llm", "scraper", "storage"] },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "langgraph", specifier = ">=1.2.24" },
+    { name = "pydantic", specifier = ">=2.14.4" },
+    { name = "python-dotenv", specifier = ">=1.2.4" },
+    { name = "workflow-lab", extras = ["db", "llm", "scraper", "storage"], editable = "packages/workflow-lab" },
 ]
 
 [[package]]
