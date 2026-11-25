@@ -1,0 +1,22 @@
+# Secrets: copy .env.example to .env
+.env
+
+# Local-only notes and docs (not tracked)
+project-docs/
+
+# Python and tooling
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Extraction cache and OS files
+.cache/
+.DS_Store
