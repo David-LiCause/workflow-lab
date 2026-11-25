@@ -4,6 +4,9 @@
 # Local-only notes and docs (not tracked)
 project-docs/
 
+# Workflow data from local runs (files in data/storage/, SQLite in data/db/). Code is tracked; data is not.
+data/
+
 # Python and tooling
 .venv/
 __pycache__/
@@ -16,6 +19,12 @@ dist/
 .mypy_cache/
 .coverage
 htmlcov/
+
+# marimo session caches: hold cell outputs, which can include query results
+__marimo__/
+
+# LangGraph dev server state (`make studio`)
+.langgraph_api/
 
 # Extraction cache and OS files
 .cache/
