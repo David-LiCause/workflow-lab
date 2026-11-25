@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>arXiv Query</title>
+  <entry>
+    <id>http://arxiv.org/abs/2611.00001v2</id>
+    <published>2026-11-24T18:00:00Z</published>
+    <title>A Vision Transformer for
+      Chest X-ray Triage</title>
+    <summary>We train a vision transformer on MIMIC-CXR to triage chest radiographs. AUROC 0.94.</summary>
+    <author><name>Ada Lovelace</name></author>
+    <author><name>Alan Turing</name></author>
+    <category term="cs.CV"/>
+    <category term="eess.IV"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2611.00002v1</id>
+    <published>2026-11-23T09:00:00Z</published>
+    <title>Faster Optimizers for Large Models</title>
+    <summary>An optimizer benchmark; the word health appears once.</summary>
+    <author><name>Grace Hopper</name></author>
+    <category term="cs.LG"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2611.00003v1</id>
+    <published>2026-11-22T12:00:00Z</published>
+    <title>LLM Summaries of Discharge Notes</title>
+    <summary>We summarize discharge notes with an LLM.</summary>
+    <author><name>Katherine Johnson</name></author>
+    <category term="cs.CL"/>
+  </entry>
+</feed>
