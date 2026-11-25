@@ -1,6 +1,6 @@
 ---
 name: new-component
-description: Seed a new reusable component in agents-playground with spec-driven development. Interviews the user, then writes the spec, tests, implementation, and README unattended. Use when the user asks to create, seed, or scaffold a component.
+description: Seed a new reusable component in workflow-lab with spec-driven development. Interviews the user, then writes the spec, tests, implementation, and README unattended. Use when the user asks to create, seed, or scaffold a component.
 ---
 
 # New component
@@ -21,8 +21,8 @@ Then write back a short summary of the goals and scope. Continue only once the u
 
 ## Part 2: Build (unattended)
 
-Do steps 1–6 in order without asking the user anything. Paths below use `<c>` for
-`src/agents_playground/components/<name>`.
+Do steps 1–6 in order without asking the user anything. Run commands from the workspace root. Paths below use `<p>` for
+`packages/workflow-lab` and `<c>` for `<p>/src/workflow_lab/components/<name>`.
 
 ### 1. Spec
 
@@ -42,16 +42,16 @@ Write `<c>/__init__.py` with real signatures, types, and docstrings. Bodies rais
 
 ### 3. Tests
 
-Write `tests/components/<name>/test_<name>.py`:
+Write `<p>/tests/components/<name>/test_<name>.py`:
 
 - At least one test per rule, named `test_r<N>_<what>`.
 - Fakes only (`MockLLM`, `tmp_path`, in-memory SQLite). No network or API keys.
 - If the component talks to an external service, add
-  `tests/components/<name>/integration/test_<name>_live.py` with
+  `<p>/tests/components/<name>/integration/test_<name>_live.py` with
   `pytestmark = pytest.mark.integration`, calling `require_env("VAR")` for each needed env var
-  (fails if missing). Add any new vars to `.env.example`.
+  (fails if missing). Add any new vars to the root `.env.example`.
 
-Run `uv run pytest tests/components/<name>` and confirm the tests fail with `NotImplementedError`.
+Run `uv run pytest <p>/tests/components/<name>` and confirm the tests fail with `NotImplementedError`.
 
 ### 4. Implement
 
@@ -59,13 +59,14 @@ Write `<c>/<name>.py` and export it from `__init__.py`.
 
 - Never weaken a test to make it pass. If a test contradicts the spec, fix the test to match the
   spec and note it in the final report.
-- Add dependencies with `uv add --optional <extra> <pkg>`.
-- Iterate until `uv run pytest tests/components/<name>` passes.
+- Add dependencies with `uv add --package workflow-lab --optional <extra> <pkg>`. For a new extra,
+  also add it to the root dev dependency `workflow-lab[...]` with `uv add --dev`, so tests have it.
+- Iterate until `uv run pytest <p>/tests/components/<name>` passes.
 
 ### 5. Finish
 
 Run `uv run pytest && uv run ruff check . && uv run ruff format .`. Add the component to the
-components table in the project `README.md`.
+components table in `<p>/README.md`.
 
 ### 6. Component README
 

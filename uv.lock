@@ -8,70 +8,19 @@ resolution-markers = [
     "python_full_version < '3.11.5'",
 ]
 
-[[package]]
-name = "agents-playground"
-version = "0.1.0"
-source = { editable = "." }
-
-[package.optional-dependencies]
-db = [
-    { name = "pydantic" },
-    { name = "sqlalchemy" },
-]
-llm = [
-    { name = "anthropic" },
-    { name = "pydantic" },
-    { name = "python-dotenv" },
-]
-scraper = [
-    { name = "crawl4ai" },
-    { name = "httpx" },
-]
-storage = [
-    { name = "fsspec" },
+[manifest]
+members = [
+    "workflow-lab",
 ]
 
-[package.dev-dependencies]
+[manifest.dependency-groups]
 dev = [
-    { name = "anthropic" },
-    { name = "crawl4ai" },
-    { name = "fsspec" },
-    { name = "httpx" },
-    { name = "psycopg", extra = ["binary"] },
-    { name = "pydantic" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
-    { name = "python-dotenv" },
-    { name = "ruff" },
-    { name = "sqlalchemy" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "anthropic", marker = "extra == 'llm'", specifier = ">=2.14.0" },
-    { name = "crawl4ai", marker = "extra == 'scraper'", specifier = ">=0.8.7" },
-    { name = "fsspec", marker = "extra == 'storage'", specifier = ">=2026.9.0" },
-    { name = "httpx", marker = "extra == 'scraper'", specifier = ">=0.28.1" },
-    { name = "pydantic", marker = "extra == 'db'", specifier = ">=2.14.4" },
-    { name = "pydantic", marker = "extra == 'llm'", specifier = ">=2.14.4" },
-    { name = "python-dotenv", marker = "extra == 'llm'", specifier = ">=1.2.4" },
-    { name = "sqlalchemy", marker = "extra == 'db'", specifier = ">=2.1.9" },
-]
-provides-extras = ["storage", "db", "llm", "scraper"]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "anthropic", specifier = ">=2.14.0" },
-    { name = "crawl4ai", specifier = ">=0.8.7" },
-    { name = "fsspec", specifier = ">=2026.9.0" },
-    { name = "httpx", specifier = ">=0.28.1" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.3.9" },
-    { name = "pydantic", specifier = ">=2.14.4" },
     { name = "pytest", specifier = ">=8" },
     { name = "pytest-asyncio", specifier = ">=1.5.0" },
     { name = "python-dotenv", specifier = ">=1.2.4" },
     { name = "ruff", specifier = ">=0.6" },
-    { name = "sqlalchemy", specifier = ">=2.1.9" },
+    { name = "workflow-lab", extras = ["db", "llm", "scraper", "storage"], editable = "packages/workflow-lab" },
 ]
 
 [[package]]
@@ -3845,6 +3794,42 @@ sdist = { url = "https://files.pythonhosted.org/packages/e3/05/b17359e1cefb4f909
 wheels = [
     { url = "https://files.pythonhosted.org/packages/92/9d/c4e665119135114480843e7ab388fa94d8480650450e6f8e26b70d323a4c/urllib3-2.8.0-py3-none-any.whl", hash = "sha256:0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3", size = 135717, upload-time = "2026-09-15T19:29:34.577Z" },
 ]
+
+[[package]]
+name = "workflow-lab"
+version = "0.1.0"
+source = { editable = "packages/workflow-lab" }
+
+[package.optional-dependencies]
+db = [
+    { name = "pydantic" },
+    { name = "sqlalchemy" },
+]
+llm = [
+    { name = "anthropic" },
+    { name = "pydantic" },
+    { name = "python-dotenv" },
+]
+scraper = [
+    { name = "crawl4ai" },
+    { name = "httpx" },
+]
+storage = [
+    { name = "fsspec" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "anthropic", marker = "extra == 'llm'", specifier = ">=2.14.0" },
+    { name = "crawl4ai", marker = "extra == 'scraper'", specifier = ">=0.8.7" },
+    { name = "fsspec", marker = "extra == 'storage'", specifier = ">=2026.9.0" },
+    { name = "httpx", marker = "extra == 'scraper'", specifier = ">=0.28.1" },
+    { name = "pydantic", marker = "extra == 'db'", specifier = ">=2.14.4" },
+    { name = "pydantic", marker = "extra == 'llm'", specifier = ">=2.14.4" },
+    { name = "python-dotenv", marker = "extra == 'llm'", specifier = ">=1.2.4" },
+    { name = "sqlalchemy", marker = "extra == 'db'", specifier = ">=2.1.9" },
+]
+provides-extras = ["storage", "db", "llm", "scraper"]
 
 [[package]]
 name = "xxhash"

@@ -1,67 +1,33 @@
-[build-system]
-requires = ["setuptools>=68"]
-build-backend = "setuptools.build_meta"
+# Workspace root: not a package itself. Members are listed below; each has its own pyproject.toml.
+# Set up everything with: uv sync --all-packages
 
-[project]
-name = "agents-playground"
-version = "0.1.0"
-description = "Reusable components (LLM client, storage, database, text extraction, web scraping) for agentic workflows."
-readme = "README.md"
-requires-python = ">=3.11"
-# Runtime dependencies go here, e.g. "requests>=2.31"
-dependencies = []
+[tool.uv.workspace]
+members = ["packages/*", "workflows/*", "apps/*"]
 
-[project.optional-dependencies]
-storage = [
-    "fsspec>=2026.9.0",
-]
-db = [
-    "pydantic>=2.14.4",
-    "sqlalchemy>=2.1.9",
-]
-llm = [
-    "anthropic>=2.14.0",
-    "pydantic>=2.14.4",
-    "python-dotenv>=1.2.4",
-]
-scraper = [
-    "crawl4ai>=0.8.7",
-    "httpx>=0.28.1",
-]
-
-[dependency-groups]
-# Installed by default with: uv sync
-dev = [
-    "anthropic>=2.14.0",
-    "crawl4ai>=0.8.7",
-    "fsspec>=2026.9.0",
-    "httpx>=0.28.1",
-    "psycopg[binary]>=3.3.9",
-    "pydantic>=2.14.4",
-    "pytest>=8",
-    "pytest-asyncio>=1.5.0",
-    "python-dotenv>=1.2.4",
-    "ruff>=0.6",
-    "sqlalchemy>=2.1.9",
-]
-
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.setuptools.package-data]
-# Ship the typing marker and each component's README; SPEC.md files stay in the repo.
-agents_playground = ["py.typed", "components/*/README.md"]
+[tool.uv.sources]
+workflow-lab = { workspace = true }
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
-addopts = "-m 'not integration'"  # run them with: pytest -m integration
+testpaths = ["packages/*/tests", "workflows/*/tests", "apps/*/tests"]
+# importlib mode lets members have test files with the same name.
+addopts = "-m 'not integration' --import-mode=importlib"  # run them with: pytest -m integration
 markers = ["integration: calls a real external service or browser; deselected by default"]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 
 [tool.ruff]
 line-length = 100
-src = ["src", "tests"]
+src = ["packages/*/src", "packages/*/tests", "workflows/*/src", "apps/*/src"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
+
+[dependency-groups]
+dev = [
+    "psycopg[binary]>=3.3.9",
+    "pytest>=8",
+    "pytest-asyncio>=1.5.0",
+    "python-dotenv>=1.2.4",
+    "ruff>=0.6",
+    "workflow-lab[db,llm,scraper,storage]",
+]

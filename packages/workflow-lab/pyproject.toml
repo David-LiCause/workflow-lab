@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "workflow-lab"
+version = "0.1.0"
+description = "Reusable components (LLM client, storage, database, text extraction, web scraping) for agentic workflows."
+readme = "README.md"
+requires-python = ">=3.11"
+# Runtime dependencies go here, e.g. "requests>=2.31"
+dependencies = []
+
+[project.optional-dependencies]
+storage = [
+    "fsspec>=2026.9.0",
+]
+db = [
+    "pydantic>=2.14.4",
+    "sqlalchemy>=2.1.9",
+]
+llm = [
+    "anthropic>=2.14.0",
+    "pydantic>=2.14.4",
+    "python-dotenv>=1.2.4",
+]
+scraper = [
+    "crawl4ai>=0.8.7",
+    "httpx>=0.28.1",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+# Ship the typing marker and each component's README; SPEC.md files stay in the repo.
+workflow_lab = ["py.typed", "components/*/README.md"]
