@@ -22,12 +22,21 @@ src = ["packages/*/src", "packages/*/tests", "workflows/*/src", "apps/*/src"]
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
 
+[tool.ruff.lint.per-file-ignores]
+# marimo writes every SQL cell as an f-string, even without placeholders.
+"notebooks/*" = ["F541"]
+
 [dependency-groups]
 dev = [
+    "duckdb>=2.0.1",
+    "langgraph-cli[inmem]>=0.4.43",
+    "marimo>=0.26.0",
+    "polars>=2.2.0",
     "psycopg[binary]>=3.3.9",
     "pytest>=8",
     "pytest-asyncio>=1.5.0",
     "python-dotenv>=1.2.4",
     "ruff>=0.6",
+    "sqlglot>=30.35.0",
     "workflow-lab[db,llm,scraper,storage]",
 ]

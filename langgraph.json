@@ -1,0 +1,15 @@
+{
+  "$schema": "https://langgra.ph/schema.json",
+  "python_version": "3.12",
+  "dependencies": [
+    "./workflows/healthtech-market-landscape-boston",
+    "./workflows/health-ai-research-digest",
+    "./workflows/healthtech-news-events"
+  ],
+  "graphs": {
+    "healthtech_discovery": "healthtech_market_landscape_boston.discovery.graph:graph",
+    "health_ai_digest": "health_ai_research_digest.digest.graph:graph",
+    "healthtech_news_collect": "healthtech_news_events.collect.graph:graph"
+  },
+  "env": ".env"
+}
