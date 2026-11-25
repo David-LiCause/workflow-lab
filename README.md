@@ -17,9 +17,9 @@ data/         # git-ignored: workflow data from local runs (see "Workflow data")
 | Part | Status | What it holds |
 | --- | --- | --- |
 | [`packages/workflow-lab`](packages/workflow-lab/README.md) | Done | Plain-Python components with no LangGraph imports; installable on its own with optional extras |
-| [`workflows/healthtech-market-landscape-boston`](workflows/healthtech-market-landscape-boston/README.md) | In progress | A market map of Boston-area healthcare and health tech companies. Discovery loads the incumbents report into SQLite |
-| [`workflows/health-ai-research-digest`](workflows/health-ai-research-digest/README.md) | In progress | Weekly digest of new health AI papers from arXiv, structured by Claude |
-| [`workflows/healthtech-news-events`](workflows/healthtech-news-events/README.md) | Done | Funding, layoff, acquisition and IPO events from health tech news sites. Collect scrapes listing pages and loads them into SQLite |
+| [`workflows/health-ai-research-digest`](workflows/health-ai-research-digest/README.md) | In progress | Weekly digest of new health AI research: fetches arXiv papers, structures each abstract with an LLM, and writes a summary by clinical area |
+| [`workflows/healthtech-news-events`](workflows/healthtech-news-events/README.md) | Done | Tracks health tech industry news (funding rounds, acquisitions, IPOs, layoffs) scraped from news sites into a database |
+| [`workflows/healthtech-market-landscape-boston`](workflows/healthtech-market-landscape-boston/README.md) | In progress | Maps the Boston healthcare and health tech ecosystem: extracts organizations from research reports and merges them into one deduplicated table |
 | `apps/` | Later | A fuller app with extra tooling (start runs, watch progress, browse results). Until then, use LangGraph Studio (see "View and debug workflows") |
 
 Each folder under `packages/`, `workflows/` and `apps/` is a uv workspace member with its own
